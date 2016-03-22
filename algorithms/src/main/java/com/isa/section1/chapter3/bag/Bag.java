@@ -1,4 +1,4 @@
-package com.isa.section1.chapter3.queue;
+package com.isa.section1.chapter3.bag;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,41 +8,27 @@ import java.util.Iterator;
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
 import com.isa.section1.chapter3.linkedlist.Node;
 
-public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
-	private BasicLinkedList<Item> backingList;
+public class Bag<Item> implements Iterable<Item> {
+	private BasicLinkedList<Item> backingList = new BasicLinkedList<>();
 
-	public BasicQueueWithLinkedList() {
-		backingList = new BasicLinkedList<Item>();
-	}
-
-	public void enqueue(Item item) {
-		backingList.insertToEnd(new Node<Item>(item));
-	}
-
-	public Item dequeue() {
-		Node<Item> node = backingList.removeFromStart();
-		if (node != null) {
-			return node.getItem();
-		}
-
-		return null;
-	}
-
-	public int size() {
-		return backingList.size();
+	public void add(Item item) {
+		backingList.insertToStart(new Node<Item>(item));
 	}
 
 	public boolean isEmpty() {
 		return backingList.size() == 0;
 	}
 
-	@Override
-	public Iterator<Item> iterator() {
-		return new QueueIterator();
+	public int size() {
+		return backingList.size();
 	}
 
-	private class QueueIterator implements Iterator<Item> {
+	@Override
+	public Iterator<Item> iterator() {
+		return new BagIterator();
+	}
 
+	private class BagIterator implements Iterator<Item> {
 		@Override
 		public boolean hasNext() {
 			return backingList.iterator().hasNext();
@@ -55,21 +41,17 @@ public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
 	}
 
 	public static void main(String[] args) throws IOException {
-		BasicQueueWithLinkedList<String> queue = new BasicQueueWithLinkedList<>();
+		Bag<String> bag = new Bag<>();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			System.out.println("Enter the string: ");
 			String input = reader.readLine();
 			String[] parts = input.split(" ");
 			for (String part : parts) {
-				if (part.equals("-")) {
-					System.out.println(queue.dequeue());
-				} else {
-					queue.enqueue(part);
-				}
+				bag.add(part);
 			}
 
-			for (String s : queue) {
+			for (String s : bag) {
 				System.out.print(s);
 			}
 		}

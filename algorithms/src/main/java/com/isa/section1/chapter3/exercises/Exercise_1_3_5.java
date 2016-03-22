@@ -42,4 +42,8 @@ public class Exercise_1_3_5 {
 
 		return binaryRepresentation;
 	}
+	
+	// We have also implemented a recursive method.
+	
+	
 }

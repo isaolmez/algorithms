@@ -14,7 +14,6 @@ public class Exercise_1_3_4 {
 			String line = reader.readLine();
 			System.out.println(isProper(line));
 		}
-
 	}
 
 	public static boolean isProper(String line) {
@@ -22,7 +21,7 @@ public class Exercise_1_3_4 {
 		for (int i = 0; i < line.length(); i++) {
 			String temp = line.substring(i, i + 1);
 			if (temp.equals(")")) {
-				for(String s : stack){
+				for (String s : stack) {
 					System.out.println(s);
 				}
 				String stackString = stack.pop();

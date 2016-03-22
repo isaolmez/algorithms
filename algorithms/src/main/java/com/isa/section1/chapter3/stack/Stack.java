@@ -8,32 +8,32 @@ import java.util.Iterator;
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
 import com.isa.section1.chapter3.linkedlist.Node;
 
-public class StackWithLinkedList<Item> implements Iterable<Item> {
-	private BasicLinkedList<Item> linkedList;
+public class Stack<Item> implements Iterable<Item> {
+	private BasicLinkedList<Item> backingList;
 
-	public StackWithLinkedList() {
-		linkedList = new BasicLinkedList<Item>();
+	public Stack() {
+		backingList = new BasicLinkedList<Item>();
 	}
 
 	public void push(Item item) {
-		linkedList.insertToStart(new Node<Item>(item));
+		backingList.insertToStart(new Node<Item>(item));
 	}
 
 	public Item pop() {
-		Node<Item> result = linkedList.removeFromStart();
+		Node<Item> result = backingList.removeFromStart();
 		return result.getItem();
 	}
 
 	public boolean isEmpty() {
-		return linkedList.size() == 0;
+		return backingList.size() == 0;
 	}
 
 	public int size() {
-		return linkedList.size();
+		return backingList.size();
 	}
 
-	private class LinkedListStackIterator implements Iterator<Item> {
-		Iterator<Item> iter = linkedList.iterator();
+	private class StackIterator implements Iterator<Item> {
+		Iterator<Item> iter = backingList.iterator();
 
 		@Override
 		public boolean hasNext() {
@@ -48,11 +48,11 @@ public class StackWithLinkedList<Item> implements Iterable<Item> {
 
 	@Override
 	public java.util.Iterator<Item> iterator() {
-		return new LinkedListStackIterator();
+		return new StackIterator();
 	}
 
 	public static void main(String[] args) throws IOException {
-		BasicStackWithIterator<String> stack = new BasicStackWithIterator<>(1);
+		Stack<String> stack = new Stack<>();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			System.out.println("Enter the string: ");
