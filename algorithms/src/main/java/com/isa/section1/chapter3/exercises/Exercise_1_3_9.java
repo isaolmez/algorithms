@@ -1,6 +1,7 @@
 package com.isa.section1.chapter3.exercises;
 
-import com.isa.section1.chapter3.stack.BasicStackWithIterator;
+import com.isa.section1.chapter3.stack.Stack;
+
 
 public class Exercise_1_3_9 {
 	public static void main(String[] args) {
@@ -9,8 +10,8 @@ public class Exercise_1_3_9 {
 	}
 
 	public static String convertToInfix(String expression) {
-		BasicStackWithIterator<String> operandStack = new BasicStackWithIterator<>(2);
-		BasicStackWithIterator<String> operatorStack = new BasicStackWithIterator<>(2);
+		Stack<String> operandStack = new Stack<>();
+		Stack<String> operatorStack = new Stack<>();
 		for(int i = 0; i < expression.length(); i++){
 			String temp = expression.substring(i, i+1);
 			if(temp.equals(" ")){

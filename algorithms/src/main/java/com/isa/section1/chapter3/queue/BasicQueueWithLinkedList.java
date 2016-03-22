@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
-import com.isa.section1.chapter3.linkedlist.Node;
 
 public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
 	private BasicLinkedList<Item> backingList;
@@ -16,16 +15,15 @@ public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
 	}
 
 	public void enqueue(Item item) {
-		backingList.insertToEnd(new Node<Item>(item));
+		backingList.insertToEnd(item);
 	}
 
 	public Item dequeue() {
-		Node<Item> node = backingList.removeFromStart();
-		if (node != null) {
-			return node.getItem();
+		if (isEmpty()) {
+			return null;
 		}
 
-		return null;
+		return backingList.removeFromStart();
 	}
 
 	public int size() {
@@ -42,15 +40,16 @@ public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
 	}
 
 	private class QueueIterator implements Iterator<Item> {
-
+		private Iterator<Item> iterator = backingList.iterator();
+		
 		@Override
 		public boolean hasNext() {
-			return backingList.iterator().hasNext();
+			return iterator.hasNext();
 		}
 
 		@Override
 		public Item next() {
-			return backingList.iterator().next();
+			return iterator.next();
 		}
 	}
 
@@ -72,6 +71,8 @@ public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
 			for (String s : queue) {
 				System.out.print(s);
 			}
+			
+			System.out.println();
 		}
 	}
 }

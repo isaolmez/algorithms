@@ -6,13 +6,12 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
-import com.isa.section1.chapter3.linkedlist.Node;
 
 public class Bag<Item> implements Iterable<Item> {
 	private BasicLinkedList<Item> backingList = new BasicLinkedList<>();
 
 	public void add(Item item) {
-		backingList.insertToStart(new Node<Item>(item));
+		backingList.insertToEnd(item);
 	}
 
 	public boolean isEmpty() {
@@ -29,14 +28,16 @@ public class Bag<Item> implements Iterable<Item> {
 	}
 
 	private class BagIterator implements Iterator<Item> {
+		private Iterator<Item> iterator = backingList.iterator();
+
 		@Override
 		public boolean hasNext() {
-			return backingList.iterator().hasNext();
+			return iterator.hasNext();
 		}
 
 		@Override
 		public Item next() {
-			return backingList.iterator().next();
+			return iterator.next();
 		}
 	}
 
@@ -54,6 +55,8 @@ public class Bag<Item> implements Iterable<Item> {
 			for (String s : bag) {
 				System.out.print(s);
 			}
+			
+			System.out.println();
 		}
 	}
 }

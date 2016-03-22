@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class BasicStack<Item> {
+public class ResizingArrayStack<Item> {
 	private int cap;
 	private Item[] backingArray;
 	private int currentSize;
 
-	public BasicStack(int cap) {
+	public ResizingArrayStack(int cap) {
 		this.cap = cap;
 		backingArray = ((Item[]) new Object[this.cap]);
 	}
@@ -26,35 +26,39 @@ public class BasicStack<Item> {
 	}
 
 	public Item pop() {
-		if (!isEmpty()) {		
-			Item result = backingArray[--currentSize];
-			backingArray[currentSize] = null; // help garbage collection - avoid loitering
-			if (currentSize < cap / 4) {
-				cap = cap / 2;
-				backingArray = Arrays.copyOf(backingArray, cap);
-				System.out.println("New stack size:" + cap);
-			}
-			
-			return result;
+		if (isEmpty()) {
+			return null;	
 		}
 
-		return null;
+		Item result = backingArray[--currentSize];
+		backingArray[currentSize] = null; // help garbage collection - avoid loitering
+		if (currentSize < cap / 4) {
+			cap = cap / 2;
+			backingArray = Arrays.copyOf(backingArray, cap);
+			System.out.println("New stack size:" + cap);
+		}
+
+		return result;
 	}
 
 	public boolean isEmpty() {
 		return currentSize == 0;
 	}
-	
-	public boolean isFull(){
-		return  currentSize == backingArray.length; 
+
+	public boolean isFull() {
+		return currentSize == backingArray.length;
 	}
 
 	public int size() {
 		return currentSize;
 	}
+	
+	public Item peek() {
+		return backingArray[currentSize - 1];
+	}
 
 	public static void main(String[] args) throws IOException {
-		BasicStack<String> stack = new BasicStack<>(1);
+		ResizingArrayStack<String> stack = new ResizingArrayStack<>(1);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			System.out.println("Enter the string: ");

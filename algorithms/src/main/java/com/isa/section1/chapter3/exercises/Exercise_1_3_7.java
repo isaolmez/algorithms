@@ -1,4 +1,4 @@
-package com.isa.section1.chapter3.stack;
+package com.isa.section1.chapter3.exercises;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,10 +7,33 @@ import java.util.Iterator;
 
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
 
-public class Stack<Item> implements Iterable<Item> {
+public class Exercise_1_3_7 {
+	public static void main(String[] args) throws IOException {
+		ExerciseStack<String> stack = new ExerciseStack<>();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		while (true) {
+			System.out.println("Enter the string: ");
+			String input = reader.readLine();
+			String[] parts = input.split(" ");
+			for (String part : parts) {
+				if (part.equals("-")) {
+					System.out.println(stack.pop());
+				} else {
+					stack.push(part);
+				}
+			}
+
+			for (String s : stack) {
+				System.out.print(s);
+			}
+		}
+	}
+}
+
+class ExerciseStack<Item> implements Iterable<Item> {
 	private BasicLinkedList<Item> backingList;
 
-	public Stack() {
+	public ExerciseStack() {
 		backingList = new BasicLinkedList<Item>();
 	}
 
@@ -34,7 +57,7 @@ public class Stack<Item> implements Iterable<Item> {
 		return backingList.size();
 	}
 	
-	public Item peek() {
+	public Item peek(){
 		return backingList.peekTail();
 	}
 
@@ -56,26 +79,5 @@ public class Stack<Item> implements Iterable<Item> {
 	public java.util.Iterator<Item> iterator() {
 		return new StackIterator();
 	}
-
-	public static void main(String[] args) throws IOException {
-		Stack<String> stack = new Stack<>();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		while (true) {
-			System.out.println("Enter the string: ");
-			String input = reader.readLine();
-			String[] parts = input.split(" ");
-			for (String part : parts) {
-				if (part.equals("-")) {
-					System.out.println(stack.pop());
-				} else {
-					stack.push(part);
-				}
-			}
-
-			for (String s : stack) {
-				System.out.print(s);
-			}
-			System.out.println();
-		}
-	}
+	
 }

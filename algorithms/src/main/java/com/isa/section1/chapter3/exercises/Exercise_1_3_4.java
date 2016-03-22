@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.isa.section1.chapter3.stack.BasicStackWithIterator;
+import com.isa.section1.chapter3.stack.ResizingArrayStackWithIterator;
 
 public class Exercise_1_3_4 {
 	public static void main(String[] args) throws IOException {
@@ -17,7 +17,7 @@ public class Exercise_1_3_4 {
 	}
 
 	public static boolean isProper(String line) {
-		BasicStackWithIterator<String> stack = new BasicStackWithIterator<String>(2);
+		ResizingArrayStackWithIterator<String> stack = new ResizingArrayStackWithIterator<String>(2);
 		for (int i = 0; i < line.length(); i++) {
 			String temp = line.substring(i, i + 1);
 			if (temp.equals(")")) {

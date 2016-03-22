@@ -19,11 +19,11 @@ public class FixedCapacityStack<Item> {
 	}
 
 	public Item pop() {
-		if (!isEmpty()) {
-			return backingArray[--currentSize];
+		if (isEmpty()) {
+			return null;
 		}
 
-		return null;
+		return backingArray[--currentSize];
 	}
 
 	public boolean isEmpty() {
@@ -38,6 +38,10 @@ public class FixedCapacityStack<Item> {
 		return currentSize;
 	}
 
+	public Item peek() {
+		return backingArray[currentSize - 1];
+	}
+	
 	public static void main(String[] args) throws IOException {
 		FixedCapacityStack<String> stack = new FixedCapacityStack<>(10);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

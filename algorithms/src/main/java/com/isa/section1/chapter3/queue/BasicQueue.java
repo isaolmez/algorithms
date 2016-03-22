@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import com.isa.section1.chapter3.stack.BasicStackWithIterator;
+import com.isa.section1.chapter3.stack.ResizingArrayStackWithIterator;
 
 public class BasicQueue<Item> implements Iterable<Item> {
 	private int insertIndex;

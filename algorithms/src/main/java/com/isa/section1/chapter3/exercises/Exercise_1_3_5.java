@@ -1,6 +1,6 @@
 package com.isa.section1.chapter3.exercises;
 
-import com.isa.section1.chapter3.stack.BasicStackWithIterator;
+import com.isa.section1.chapter3.stack.ResizingArrayStackWithIterator;
 
 public class Exercise_1_3_5 {
 	public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class Exercise_1_3_5 {
 	}
 
 	public static void toBinaryWithStack(int number) {
-		BasicStackWithIterator<String> stack = new BasicStackWithIterator<String>(2);
+		ResizingArrayStackWithIterator<String> stack = new ResizingArrayStackWithIterator<String>(2);
 		for(int i = number; i > 0; i = i / 2){
 			stack.push(String.valueOf(i%2));
 		}

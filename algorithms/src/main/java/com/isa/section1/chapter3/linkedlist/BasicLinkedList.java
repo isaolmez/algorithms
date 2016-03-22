@@ -1,21 +1,40 @@
 package com.isa.section1.chapter3.linkedlist;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
-import com.isa.section1.chapter3.stack.BasicStack;
 
 public class BasicLinkedList<Item> implements Iterable<Item> {
 
-	private Node<Item> head;
-	private Node<Item> tail;
+	private Node head;
+	private Node tail;
 	private int currentSize;
 
-	public void insertToEnd(Node<Item> node) {
-		if (node == null) {
-			return;
+	private class Node {
+		private Item item;
+		private Node next;
+
+		public Node(Item item) {
+			this.item = item;
 		}
+
+		public void setItem(Item item) {
+			this.item = item;
+		}
+
+		public Item getItem() {
+			return item;
+		}
+
+		public void setNext(Node next) {
+			this.next = next;
+		}
+
+		public Node getNext() {
+			return next;
+		}
+	}
+
+	public void insertToEnd(Item item) {
+		Node node = new Node(item);
 
 		if (head == null) {
 			head = node;
@@ -28,10 +47,8 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 		currentSize++;
 	}
 
-	public void insertToStart(Node<Item> node) {
-		if (node == null) {
-			return;
-		}
+	public void insertToStart(Item item) {
+		Node node = new Node(item);
 
 		if (head == null) {
 			head = node;
@@ -44,28 +61,27 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 		currentSize++;
 	}
 
-	public void insertToIndex(Node<Item> node, int index) {
-		if (node == null) {
-			return;
-		}
-
-		if (head == null) {
-			head = node;
-			tail = node;
-		}
-
+	public void insertToIndex(Item item, int index) {
 		if (index == 0) {
-			this.insertToStart(node);
+			this.insertToStart(item);
 		} else {
-			Node<Item> temp = head;
-			for (int i = 0; i < index - 1; i++) {
-				if (temp.getNext() != null) {
-					temp = temp.getNext();
+			Node traverser = null;
+			for (int i = 0; i <= index - 1; i++) {
+				if (i == 0) {
+					traverser = head;
+				} else {
+					traverser = traverser.getNext();
+				}
+
+				if (traverser == null) {
+					return;
 				}
 			}
 
-			node.setNext(temp.getNext());
-			temp.setNext(node);
+			// Insert after (index-1)th node
+			Node node = new Node(item);
+			node.setNext(traverser.getNext());
+			traverser.setNext(node);
 
 			if (node.getNext() == null) {
 				tail = node;
@@ -75,40 +91,36 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 		currentSize++;
 	}
 
-	public Node<Item> removeFromEnd() {
+	public Item removeFromEnd() {
 		if (head == null) {
 			return null;
 		}
 
 		currentSize--;
-		Node<Item> oldTail = tail;
+		Node oldTail = tail;
 		if (head == tail) {
 			head = null;
 			tail = null;
 		} else {
-			Node<Item> temp = head;
-			while (temp.getNext() != null) {
-				if (temp.getNext().getNext() == null) {
-					break;
-				}
-
-				temp = temp.getNext();
+			Node traverser = head;
+			while (traverser.getNext().getNext() != null) {
+				traverser = traverser.getNext();
 			}
 
-			temp.setNext(null);
-			tail = temp;
+			traverser.setNext(null);
+			tail = traverser;
 		}
 
-		return oldTail;
+		return oldTail.getItem();
 	}
 
-	public Node<Item> removeFromStart() {
+	public Item removeFromStart() {
 		if (head == null) {
 			return null;
 		}
 
 		currentSize--;
-		Node<Item> oldHead = head;
+		Node oldHead = head;
 		if (head == tail) {
 			head = null;
 			tail = null;
@@ -116,13 +128,21 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 			head = head.getNext();
 		}
 
-		return oldHead;
+		return oldHead.getItem();
 	}
 
 	public int size() {
 		return currentSize;
 	}
-	
+
+	public Item peekHead() {
+		return head.getItem();
+	}
+
+	public Item peekTail() {
+		return tail.getItem();
+	}
+
 	@Override
 	public Iterator<Item> iterator() {
 		return new LinkedListIterator();
@@ -130,7 +150,7 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 
 	private class LinkedListIterator implements Iterator<Item> {
 
-		private Node<Item> activeNode = head;
+		private Node activeNode = head;
 
 		@Override
 		public boolean hasNext() {
@@ -148,11 +168,11 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 
 	public static void main(String[] args) {
 		BasicLinkedList<String> linkedlist = new BasicLinkedList<String>();
-		linkedlist.insertToStart(new Node<String>("isa"));
-		linkedlist.insertToEnd(new Node<String>("Olmez"));
-		linkedlist.insertToStart(new Node<String>("Sayın"));
-		linkedlist.insertToIndex(new Node<String>("aka"), 2);
-		linkedlist.insertToIndex(new Node<String>("Crow"), 3);
+		linkedlist.insertToStart("isa");
+		linkedlist.insertToEnd("Olmez");
+		linkedlist.insertToStart("Sayın");
+		linkedlist.insertToIndex("aka", 2);
+		linkedlist.insertToIndex("Crow", 3);
 		for (String s : linkedlist) {
 			System.out.print(s + " ");
 		}
@@ -170,10 +190,6 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 		for (String s : linkedlist) {
 			System.out.print(s + " ");
 		}
-
-		List list = new ArrayList<String>();
-		BasicStack<String>[] arr = (BasicStack<String>[]) new BasicStack[1];
-
 	}
 
 }
