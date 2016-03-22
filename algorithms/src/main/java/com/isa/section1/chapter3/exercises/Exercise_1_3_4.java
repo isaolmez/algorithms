@@ -1,4 +1,4 @@
-package com.isa.section1.chapter3.questions;
+package com.isa.section1.chapter3.exercises;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import com.isa.section1.chapter3.stack.BasicStackWithIterator;
 
-public class Q_1_3_4 {
+public class Exercise_1_3_4 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {

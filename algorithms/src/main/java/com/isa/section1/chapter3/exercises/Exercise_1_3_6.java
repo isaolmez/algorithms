@@ -1,10 +1,10 @@
-package com.isa.section1.chapter3.questions;
+package com.isa.section1.chapter3.exercises;
 
 import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class Q1_3_6 {
+public class Exercise_1_3_6 {
 	public static void main(String[] args) {
 		System.out.println(reverse("isa olmez"));
 

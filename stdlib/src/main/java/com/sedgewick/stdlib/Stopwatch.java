@@ -34,7 +34,7 @@ public class Stopwatch {
      */
     public double elapsedTime() {
         long now = System.currentTimeMillis();
-        return (now - start) / 1000.0;
+        return (now - start); // 1000.0;
     }
 
 } 

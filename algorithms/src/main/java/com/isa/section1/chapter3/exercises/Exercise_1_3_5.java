@@ -1,8 +1,8 @@
-package com.isa.section1.chapter3.questions;
+package com.isa.section1.chapter3.exercises;
 
 import com.isa.section1.chapter3.stack.BasicStackWithIterator;
 
-public class Q1_3_5 {
+public class Exercise_1_3_5 {
 	public static void main(String[] args) {
 		System.out.println(toBinaryBasic(6));
 		System.out.println(toBinaryPrefixed(6));

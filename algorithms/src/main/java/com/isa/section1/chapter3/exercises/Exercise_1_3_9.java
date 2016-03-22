@@ -1,8 +1,8 @@
-package com.isa.section1.chapter3.questions;
+package com.isa.section1.chapter3.exercises;
 
 import com.isa.section1.chapter3.stack.BasicStackWithIterator;
 
-public class Q1_3_9 {
+public class Exercise_1_3_9 {
 	public static void main(String[] args) {
 		isDigit("3");
 		System.out.println(convertToInfix("1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) ) "));

@@ -1,8 +1,8 @@
-package com.isa.section1.chapter3.questions;
+package com.isa.section1.chapter3.exercises;
 
 import com.isa.section1.chapter3.stack.BasicStackWithIterator;
 
-public class Q1_3_10 {
+public class Exercise_1_3_10 {
 	public static String convertFromInfixToPostfix(String expression) {
 		BasicStackWithIterator<String> operatorStack = new BasicStackWithIterator<String>(2);
 		BasicStackWithIterator<String> operandStack = new BasicStackWithIterator<>(2);
