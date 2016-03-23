@@ -6,20 +6,29 @@ public class BinarySearch {
 	private int[] source;
 
 	public BinarySearch(int[] input) {
-		this.source = Arrays.copyOf(input, input.length);
-		for (int i : source) {
-			System.out.print(i);
+		this(input, false);
+	}
+
+	public BinarySearch(int[] input, boolean clone) {
+		if (clone) {
+			this.source = Arrays.copyOf(input, input.length);
+		} else {
+			this.source = input;
 		}
 
 		Arrays.sort(this.source);
 	}
 
 	public boolean contains(int key) {
-		if (rankIterative(key) == -1) {
+		if (rank(key) == -1) {
 			return false;
 		}
 
 		return true;
+	}
+
+	public int rank(int key) {
+		return rankIterative(key);
 	}
 
 	public int rankRecursive(int key, int min, int max) {
@@ -32,10 +41,8 @@ public class BinarySearch {
 			return middle;
 		} else {
 			if (key > source[middle]) {
-				System.out.println("Continuing up with min: " + (middle + 1) + " max: " + (max));
 				return rankRecursive(key, middle + 1, max);
 			} else {
-				System.out.println("Continuing down with min: " + (min) + " max: " + (middle - 1));
 				return rankRecursive(key, min, middle - 1);
 			}
 		}

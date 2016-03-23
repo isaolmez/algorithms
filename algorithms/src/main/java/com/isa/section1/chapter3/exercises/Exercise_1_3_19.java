@@ -33,7 +33,9 @@ public class Exercise_1_3_19 {
 /**
  * Used For:
  * 
- * Exercise_1_3_19 Exercise_1_3_20
+ * Exercise_1_3_19 
+ * Exercise_1_3_20
+ * Exercise_1_3_26
  * 
  * */
 class ExerciseLinkedList<Item> implements Iterable<Item> {
