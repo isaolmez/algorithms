@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 import com.sedgewick.stdlib.Stopwatch;
 
-public class UFMemMonster extends UF2 {
+public class UFMemMonster extends UF {
 	private int[] siteToComponentMap;
 	private int[][] components;
 

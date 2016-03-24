@@ -1,7 +1,7 @@
 package com.isa.section1.chapter5;
 
 
-public abstract class UF2 {
+public abstract class UF {
 	protected int componentCount;
 
 	public abstract void union(int p, int q);
