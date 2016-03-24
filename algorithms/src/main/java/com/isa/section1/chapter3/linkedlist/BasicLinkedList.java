@@ -142,6 +142,11 @@ public class BasicLinkedList<Item> implements Iterable<Item> {
 	public Item peekTail() {
 		return tail.getItem();
 	}
+	
+	public void addAll(BasicLinkedList<Item> inputList){
+		this.tail.next = inputList.head;
+		this.tail = inputList.tail;
+	}
 
 	@Override
 	public Iterator<Item> iterator() {
