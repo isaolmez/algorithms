@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 import com.sedgewick.stdlib.Stopwatch;
 
-public class UFWeigthedQuickUnion extends UF {
+public class UFWeigthedQuickUnion extends UF2 {
 	private int[] siteToAdjacentSite;
 	private int[] componentSizes;
 

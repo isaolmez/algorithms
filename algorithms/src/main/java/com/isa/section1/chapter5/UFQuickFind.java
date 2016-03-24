@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 import com.sedgewick.stdlib.Stopwatch;
 
-public class UFQuickFind extends UF {
+public class UFQuickFind extends UF2 {
 	private int[] siteToComponentMap;
 
 	public UFQuickFind(int length) {

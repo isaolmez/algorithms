@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
 import com.sedgewick.stdlib.Stopwatch;
 
-public class UFArrayOfConnected extends UF {
+public class UFArrayOfConnected extends UF2 {
 	private int[] siteToComponent;
 	private BasicLinkedList<Integer>[] components;
 
