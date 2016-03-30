@@ -15,9 +15,8 @@ public class MaxPQ<Key extends Comparable<Key>> {
 		keys = (Key[]) new Comparable[max];
 	}
 
-	public MaxPQ(Key[] a) {
-		keys = (Key[]) new Comparable[a.length + 1];
-		constructSwim(a);
+	public MaxPQ(Key[] arr) {
+		construct(arr);
 	}
 
 	public void insert(Key v) {
@@ -50,16 +49,6 @@ public class MaxPQ<Key extends Comparable<Key>> {
 		return max;
 	}
 
-	private boolean less(int first, int second) {
-		return keys[first].compareTo(keys[second]) < 0;
-	}
-
-	private void exch(int first, int second) {
-		Key temp = keys[first];
-		keys[first] = keys[second];
-		keys[second] = temp;
-	}
-
 	public boolean isEmpty() {
 		return size == 0;
 	}
@@ -71,20 +60,38 @@ public class MaxPQ<Key extends Comparable<Key>> {
 	public int size() {
 		return size;
 	}
+	
+	private boolean less(int first, int second) {
+		return keys[first].compareTo(keys[second]) < 0;
+	}
+
+	private void exch(int first, int second) {
+		Key temp = keys[first];
+		keys[first] = keys[second];
+		keys[second] = temp;
+	}
 
 	// TODO must find not null values and new array size must be => size * 2
 	private void resize() {
 		keys = Arrays.copyOf(keys, keys.length * 2);
 	}
 
-	private void constructSwim(Key[] arr) {
+	private void construct(Key[] arr) {
+		constructWithSink(arr);
+	}
+
+	private void constructWithSwim(Key[] arr) {
+		keys = (Key[]) new Comparable[arr.length + 1];
 		for (int i = 0; i < arr.length; i++) {
 			insert(arr[i]);
 		}
 	}
 
-	private void constructSink(Key[] arr) {
-		// TODO
+	private void constructWithSink(Key[] arr) {
+		keys = Arrays.copyOf(arr, arr.length + 1);
+		for (int i = arr.length / 2; i > 0; i--) {
+			sink(i);
+		}
 	}
 
 	private void sink(int index) {
@@ -144,14 +151,14 @@ public class MaxPQ<Key extends Comparable<Key>> {
 	}
 
 	public static void main(String[] args) {
-//		 MaxPQ<String> maxPQ = new MaxPQ<String>(new String[] { "i", "n", "g", "h", "e", "a", "p", "s", "o", "r", "t" });
-//		MaxPQ<String> maxPQ = new MaxPQ<String>(new String[] { "i", "s", "a", "o", "l", "m", "e", "z" });
+		// MaxPQ<String> maxPQ = new MaxPQ<String>(new String[] { "i", "n", "g", "h", "e", "a", "p", "s", "o", "r", "t" });
+		// MaxPQ<String> maxPQ = new MaxPQ<String>(new String[] { "i", "s", "a", "o", "l", "m", "e", "z" });
 		MaxPQ<String> maxPQ = new MaxPQ<String>(2);
 		String[] source = new String[] { "i", "n", "g", "h", "e", "a", "p", "s", "o", "r", "t" };
-		for(String s: source){
+		for (String s : source) {
 			maxPQ.insert(s);
 		}
-		
+
 		while (maxPQ.size() > 0) {
 			System.out.println(maxPQ.delMax());
 		}

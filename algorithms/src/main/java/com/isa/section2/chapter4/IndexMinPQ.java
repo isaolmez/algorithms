@@ -65,6 +65,18 @@ public class IndexMinPQ<Key extends Comparable<Key>> {
 		return t;
 	}
 
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	public boolean isFull() {
+		return size + 1 == keys.length;
+	}
+
+	public int size() {
+		return size;
+	}
+
 	private boolean less(int first, int second) {
 		return keys[second].compareTo(keys[first]) < 0;
 	}
@@ -76,18 +88,6 @@ public class IndexMinPQ<Key extends Comparable<Key>> {
 		int t = indexes[first];
 		indexes[first] = indexes[second];
 		indexes[second] = t;
-	}
-
-	public boolean isEmpty() {
-		return size == 0;
-	}
-
-	public boolean isFull() {
-		return size + 1 == keys.length;
-	}
-
-	public int size() {
-		return size;
 	}
 
 	// TODO must find not null values and new array size must be => size * 2

@@ -16,8 +16,7 @@ public class MinPQ<Key extends Comparable<Key>> {
 	}
 
 	public MinPQ(Key[] a) {
-		keys = (Key[]) new Comparable[a.length + 1];
-		constructSwim(a);
+		construct(a);
 	}
 
 	public void insert(Key v) {
@@ -47,27 +46,7 @@ public class MinPQ<Key extends Comparable<Key>> {
 		keys[size] = null;
 		size--;
 		sink(1);
-		// if (size > 1) {
-		// keys[1] = keys[size];
-		// keys[size] = null;
-		// size--;
-		// sink(1);
-		// } else {
-		// keys[size] = null;
-		// size--;
-		// }
-
 		return max;
-	}
-
-	private boolean less(int first, int second) {
-		return keys[second].compareTo(keys[first]) < 0;
-	}
-
-	private void exch(int first, int second) {
-		Key temp = keys[first];
-		keys[first] = keys[second];
-		keys[second] = temp;
 	}
 
 	public boolean isEmpty() {
@@ -81,20 +60,38 @@ public class MinPQ<Key extends Comparable<Key>> {
 	public int size() {
 		return size;
 	}
+	
+	private boolean less(int first, int second) {
+		return keys[second].compareTo(keys[first]) < 0;
+	}
+
+	private void exch(int first, int second) {
+		Key temp = keys[first];
+		keys[first] = keys[second];
+		keys[second] = temp;
+	}
 
 	// TODO must find not null values and new array size must be => size * 2
 	private void resize() {
 		keys = Arrays.copyOf(keys, keys.length * 2);
 	}
 
-	private void constructSwim(Key[] arr) {
+	private void construct(Key[] arr) {
+		constructWithSink(arr);
+	}
+
+	private void constructWithSwim(Key[] arr) {
+		keys = (Key[]) new Comparable[arr.length + 1];
 		for (int i = 0; i < arr.length; i++) {
 			insert(arr[i]);
 		}
 	}
 
-	private void constructSink(Key[] arr) {
-		// TODO
+	private void constructWithSink(Key[] arr) {
+		keys = Arrays.copyOf(arr, arr.length + 1);
+		for (int i = arr.length / 2 - 1; i > 0; i--) {
+			sink(i);
+		}
 	}
 
 	private void sink(int index) {
