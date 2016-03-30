@@ -16,6 +16,7 @@ public class Exercise_2_4_1 {
 		}
 	}
 	
+	// Also covers Exercise 2.4.6 
 	/***
 	 * P R I O * R * * I * T * Y * * * Q U E * * * U * E
 	 * 
