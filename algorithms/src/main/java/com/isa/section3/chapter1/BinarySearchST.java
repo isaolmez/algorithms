@@ -3,7 +3,7 @@ package com.isa.section3.chapter1;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
+public class BinarySearchST<Key extends Comparable<Key>, Value> extends OrderedST<Key, Value> {
 	private int size = 0;
 	private Key[] keys;
 	private Value[] values;
@@ -20,7 +20,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 		}
 
 		int rank = rank(key);
-		if (keys[rank] != null && keys[rank].equals(key)) {
+		if (rank < size && keys[rank].equals(key)) {
 			values[rank] = value;
 		} else {
 			for (int i = size - 1; i >= rank; i--) {
@@ -37,7 +37,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 	@Override
 	public Value get(Key key) {
 		int rank = rank(key);
-		if (keys[rank] != null && keys[rank].equals(key)) {
+		if (rank < size && keys[rank].equals(key)) {
 			return values[rank];
 		}
 
@@ -51,8 +51,8 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 		}
 
 		int rank = rank(key);
-		if (keys[rank] != null) {
-			for (int i = rank; i < size; i++) {
+		if (rank < size) {
+			for (int i = rank; i < size - 1; i++) {
 				keys[i] = keys[i + 1];
 				values[i] = values[i + 1];
 			}
@@ -106,10 +106,10 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 	}
 
 	public int rank(Key key) {
-		if(size == 0){
+		if (size == 0) {
 			return 0;
 		}
-		
+
 		return rankIterative(key, 0, size - 1);
 	}
 
@@ -119,7 +119,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 		}
 
 		int middle = (low + high) / 2;
-		if (key.compareTo(keys[middle]) == 0) {
+		if (key.equals(keys[middle])) {
 			return middle;
 		} else if (key.compareTo(keys[middle]) < 0) {
 			return rankRecursive(key, low, middle - 1);
@@ -131,7 +131,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 	public int rankIterative(Key key, int low, int high) {
 		while (low <= high) {
 			int middle = (low + high) / 2;
-			if (key.compareTo(keys[middle]) == 0) {
+			if (key.equals(keys[middle])) {
 				return middle;
 			} else if (key.compareTo(keys[middle]) < 0) {
 				high = middle - 1;
@@ -143,24 +143,6 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 		return low;
 	}
 
-	private void exch(int first, int second) {
-		Value temp = values[first];
-		values[first] = values[second];
-		values[second] = temp;
-
-		Key tempKey = keys[first];
-		keys[first] = keys[second];
-		keys[second] = tempKey;
-	}
-
-	private boolean less(int first, int second) {
-		if (keys[first].compareTo(keys[second]) < 0) {
-			return true;
-		}
-
-		return false;
-	}
-
 	private void resize() {
 		keys = Arrays.copyOf(keys, keys.length * 2);
 		values = Arrays.copyOf(values, keys.length * 2);
@@ -170,5 +152,94 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends ST<Key, 
 		for (int i = 0; i < size; i++) {
 			System.out.println(i + ":" + keys[i]);
 		}
+	}
+
+	@Override
+	public Key min() {
+		if (isEmpty()) {
+			return null;
+		}
+
+		return keys[0];
+	}
+
+	@Override
+	public Key max() {
+		if (isEmpty()) {
+			return null;
+		}
+
+		return keys[size - 1];
+	}
+
+	@Override
+	public Key floor(Key key) {
+		if (isEmpty()) {
+			return null;
+		}
+
+		int rank = rank(key);
+		if (rank - 1 > 0 && rank - 1 < keys.length) {
+			return keys[rank - 1];
+		}
+
+		return null;
+	}
+
+	@Override
+	public Key ceiling(Key key) {
+		if (isEmpty()) {
+			return null;
+		}
+
+		int rank = rank(key);
+		if (rank < keys.length) {
+			return keys[rank];
+		}
+
+		return null;
+	}
+
+	@Override
+	public Key select(int k) {
+		if (k < size) {
+			return keys[k];
+		}
+
+		return null;
+	}
+
+	@Override
+	public void deleteMin() {
+		if (isEmpty()) {
+			return;
+		}
+
+		delete(select(0));
+	}
+
+	@Override
+	public void deleteMax() {
+		if (isEmpty()) {
+			return;
+		}
+
+		delete(select(size - 1));
+	}
+
+	@Override
+	public int size(Key lo, Key hi) {
+		int low = rank(lo);
+		int high = rank(hi);
+		if (low < size && high < size) {
+			return high - low;
+		}
+
+		return 0;
+	}
+
+	@Override
+	public Iterable<Key> keys(Key lo, Key hi) {
+		return null;
 	}
 }

@@ -10,16 +10,20 @@ import com.sedgewick.stdlib.Stopwatch;
 
 public class FrequencyCounter {
 	public static void main(String[] args) throws IOException {
-		int minlen = 10; // key-length cutoff
-		String fileName = "tale100k.txt";
+		int minlen = 8; // key-length cutoff
+		String fileName = "tale.txt";
 		System.out.println(Thread.currentThread().getContextClassLoader().getResource(fileName).getPath());
 		BufferedReader reader = new BufferedReader(new FileReader(new File(Thread.currentThread().getContextClassLoader().getResource(fileName).getPath())));
 		String line = null;
-		ST<String, Integer> st = new SequentialSearchST<String, Integer>();
+		ST<String, Integer> st = new BinarySearchST<String, Integer>();
 		Stopwatch watch = new Stopwatch();
+		int count = 0;
 		while ((line = reader.readLine()) != null) { // Build symbol table and count frequencies.
-			String[] words = line.split(" ");
+			if(line.trim().equals("")) continue;
+			String[] words = line.trim().split(" ");
 			for (String word : words) {
+				if(word.trim().equals("")) continue;
+				count++;
 				if (word.length() < minlen)
 					continue; // Ignore short keys.
 				if (!st.contains(word))
@@ -29,7 +33,10 @@ public class FrequencyCounter {
 			}
 		}
 		
-		//Print distinct keys
+		// Print total keys
+		System.out.println("Size (total keys): " + count);
+		
+		// Print distinct keys
 		System.out.println("Size (distinct keys): " + st.size());
 		
 		// Find a key with the highest frequency count.

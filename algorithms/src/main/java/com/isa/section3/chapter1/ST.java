@@ -1,7 +1,6 @@
 package com.isa.section3.chapter1;
 
-
-public abstract class ST<Key, Value>{
+public abstract class ST<Key, Value> {
 	public abstract void put(Key key, Value value);
 
 	public abstract Value get(Key key);
