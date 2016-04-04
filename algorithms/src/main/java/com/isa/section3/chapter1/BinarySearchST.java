@@ -20,7 +20,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends OrderedS
 		}
 
 		int rank = rank(key);
-		if (rank < size && keys[rank].equals(key)) {
+		if (rank < size && keys[rank].compareTo(key) == 0) {
 			values[rank] = value;
 		} else {
 			for (int i = size - 1; i >= rank; i--) {
@@ -37,7 +37,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends OrderedS
 	@Override
 	public Value get(Key key) {
 		int rank = rank(key);
-		if (rank < size && keys[rank].equals(key)) {
+		if (rank < size && keys[rank].compareTo(key) == 0) {
 			return values[rank];
 		}
 
@@ -119,7 +119,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends OrderedS
 		}
 
 		int middle = (low + high) / 2;
-		if (key.equals(keys[middle])) {
+		if (key.compareTo(keys[middle]) == 0) {
 			return middle;
 		} else if (key.compareTo(keys[middle]) < 0) {
 			return rankRecursive(key, low, middle - 1);
@@ -131,7 +131,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> extends OrderedS
 	public int rankIterative(Key key, int low, int high) {
 		while (low <= high) {
 			int middle = (low + high) / 2;
-			if (key.equals(keys[middle])) {
+			if (key.compareTo(keys[middle]) == 0) {
 				return middle;
 			} else if (key.compareTo(keys[middle]) < 0) {
 				high = middle - 1;

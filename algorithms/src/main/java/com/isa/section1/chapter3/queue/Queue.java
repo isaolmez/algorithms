@@ -7,10 +7,10 @@ import java.util.Iterator;
 
 import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
 
-public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
+public class Queue<Item> implements Iterable<Item> {
 	private BasicLinkedList<Item> backingList;
 
-	public BasicQueueWithLinkedList() {
+	public Queue() {
 		backingList = new BasicLinkedList<Item>();
 	}
 
@@ -54,7 +54,7 @@ public class BasicQueueWithLinkedList<Item> implements Iterable<Item> {
 	}
 
 	public static void main(String[] args) throws IOException {
-		BasicQueueWithLinkedList<String> queue = new BasicQueueWithLinkedList<>();
+		Queue<String> queue = new Queue<>();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			System.out.println("Enter the string: ");
