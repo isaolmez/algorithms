@@ -6,18 +6,22 @@ public class Exercise_3_2_2 {
  * 
  * OTHER WORST CASES
  * 
- * One little trick. Root(the 1st element) must be smaller or greater than next two elements. So we can maintain string like tree behaviour. 
- * After 3 nodes have been inserted, take the 3rd node as the new root and repeat the rule.
+ * First sort the input:
+ * ACERSX
  * 
- * XACSRE
- * XAESRC
- * XECSRA
- * XEASRC
- * XCASRE
- * XCESRA
+ * Then like quick sort partitioning process, Select partition item from the edges(left or right)
  * 
- * SACXRE
- * SAEXRC
+ * CHOOSE A (We are left with CERSX)
+ * CHOOSE X (We are left with CERS)
+ * CHOOSE S (We are left with CER)
+ * CHOOSE C (We are left with ER)
+ * CHOOSE E (We are left with R)
+ * CHOOSE R
+ * AXSCER
+ *
+ * 
+ * 
+ * 
  *  
  * 
  */
