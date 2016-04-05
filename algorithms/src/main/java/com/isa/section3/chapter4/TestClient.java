@@ -6,7 +6,7 @@ import com.sedgewick.stdlib.StdOut;
 public class TestClient {
 	public static void main(String[] args) {
 		ST<String, Integer> st;
-		st = new SeperateChainingHashST<String, Integer>(17);
+		st = new LinearProbingHashST<String, Integer>(17);
 //		String[] input = "SEARCHEXAMPLE".split("");
 		String[] input = "EASYQUESTION".split("");
 		for (int i = 0; i < input.length; i++) {
