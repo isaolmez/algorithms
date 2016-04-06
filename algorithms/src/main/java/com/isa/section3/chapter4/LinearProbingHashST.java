@@ -62,23 +62,35 @@ public class LinearProbingHashST<Key, Value> extends ST<Key, Value> {
 	@Override
 	public Value get(Key key) {
 		int index = modularHash(key);
-		if (keys[index] == null) {
-			return null;
-		} else {
-			if (key.equals(keys[index])) {
-				return values[index];
-			} else {
-				while (++index < keys.length || (index = index % keys.length) < keys.length) {
-					if (keys[index] == null) {
-						return null;
-					} else if (key.equals(keys[index])) {
-						return values[index];
-					}
-				}
 
+		while (index < keys.length || (index = index % keys.length) < keys.length) {
+			if (keys[index] == null) {
 				return null;
+			} else if (key.equals(keys[index])) {
+				return values[index];
 			}
+			
+			index++;
 		}
+		
+		return null;
+		// if (keys[index] == null) {
+		// return null;
+		// } else {
+		// if (key.equals(keys[index])) {
+		// return values[index];
+		// } else {
+		// while (++index < keys.length || (index = index % keys.length) < keys.length) {
+		// if (keys[index] == null) {
+		// return null;
+		// } else if (key.equals(keys[index])) {
+		// return values[index];
+		// }
+		// }
+		//
+		// return null;
+		// }
+		// }
 	}
 
 	@Override
