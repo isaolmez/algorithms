@@ -7,8 +7,8 @@ import com.sedgewick.stdlib.Stopwatch;
 
 public class BasicKeyIndexedCounting {
 
-	public static void sort(int[] items) {
-		int[] count = new int[101];
+	public static void sort(int[] items, int limit) {
+		int[] count = new int[limit + 1];
 		for (int i = 0; i < items.length; i++) {
 			count[items[i] + 1]++;
 		}
@@ -28,14 +28,15 @@ public class BasicKeyIndexedCounting {
 	}
 
 	public static void main(String[] args) {
-		int[] items = generateItems();
+		int limit = 100;
+		int[] items = generateItems(limit);
 		System.out.println("Size: " + items.length);
 		Stopwatch watch = new Stopwatch();
-		BasicKeyIndexedCounting.sort(items);
+		BasicKeyIndexedCounting.sort(items, limit);
 		System.out.println("Elapsed: " + watch.elapsedTime());
 		System.out.println("Is sorted:" + isSorted(items));
 
-		items = generateItems();
+		items = generateItems(limit);
 		watch = new Stopwatch();
 		Arrays.sort(items);
 		System.out.println("Elapsed: " + watch.elapsedTime());
@@ -50,11 +51,11 @@ public class BasicKeyIndexedCounting {
 		return true;
 	}
 
-	private static int[] generateItems() {
-		int[] items = new int[100000];
+	private static int[] generateItems(int limit) {
+		int[] items = new int[1000000];
 		Random random = new Random();
 		for (int i = 0; i < items.length; i++) {
-			items[i] = random.nextInt(100);
+			items[i] = random.nextInt(limit);
 		}
 
 		return items;

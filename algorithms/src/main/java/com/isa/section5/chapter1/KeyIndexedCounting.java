@@ -6,27 +6,6 @@ import com.isa.section2.chapter3.Quick;
 import com.sedgewick.stdlib.Stopwatch;
 
 public class KeyIndexedCounting {
-
-	public static void sort(Item[] items) {
-		int[] count = new int[101];
-		for (int i = 0; i < items.length; i++) {
-			count[items[i].key + 1]++;
-		}
-
-		for (int i = 1; i < count.length; i++) {
-			count[i] += count[i - 1];
-		}
-
-		Item<String>[] aux = (Item<String>[]) new Item[items.length];
-		for (int i = 0; i < items.length; i++) {
-			aux[count[items[i].key]++] = items[i];
-		}
-
-		for (int i = 0; i < aux.length; i++) {
-			items[i] = aux[i];
-		}
-	}
-
 	private static class Item<Value> implements Comparable<Item<Value>> {
 		int key;
 		Value value;
@@ -52,11 +31,32 @@ public class KeyIndexedCounting {
 		}
 	}
 
+	public static void sort(Item[] items, int limit) {
+		int[] count = new int[limit + 1];
+		for (int i = 0; i < items.length; i++) {
+			count[items[i].key + 1]++;
+		}
+
+		for (int i = 1; i < count.length; i++) {
+			count[i] += count[i - 1];
+		}
+
+		Item<String>[] aux = (Item<String>[]) new Item[items.length];
+		for (int i = 0; i < items.length; i++) {
+			aux[count[items[i].key]++] = items[i];
+		}
+
+		for (int i = 0; i < aux.length; i++) {
+			items[i] = aux[i];
+		}
+	}
+
 	public static void main(String[] args) {
-		Item<String>[] items = generateItems(100);
+		int limit = 100;
+		Item<String>[] items = generateItems(limit);
 		System.out.println("Size: " + items.length);
 		Stopwatch watch = new Stopwatch();
-		KeyIndexedCounting.sort(items);
+		KeyIndexedCounting.sort(items, limit);
 		System.out.println("Elapsed: " + watch.elapsedTime());
 
 		items = generateItems(100);
