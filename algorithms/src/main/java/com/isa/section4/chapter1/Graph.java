@@ -10,12 +10,12 @@ import com.isa.section1.chapter3.bag.Bag;
  * In this API, all vertices are integers. Because of this, our data representation is vertice-indexed array of bags.
  *
  */
-public class Graph2 extends IGraph {
+public class Graph extends IGraph {
 	private Bag<Integer>[] bagArray;
 	private final int vertexCount;
 	private int edgeCount;
 
-	public Graph2(int V) {
+	public Graph(int V) {
 		bagArray = (Bag<Integer>[]) new Bag[V];
 		for (int i = 0; i < V; i++) {
 			bagArray[i] = new Bag();
@@ -24,7 +24,7 @@ public class Graph2 extends IGraph {
 		vertexCount = V;
 	}
 
-	public Graph2(InputStream stream) {
+	public Graph(InputStream stream) {
 		Scanner scanner = new Scanner(stream);
 		scanner.useDelimiter("\\s+");
 		vertexCount = scanner.nextInt();
@@ -84,7 +84,7 @@ public class Graph2 extends IGraph {
 	public static void main(String[] args) throws IOException {
 		String fileName = "tinyG.txt";
 		String filePath = Thread.currentThread().getContextClassLoader().getResource(fileName).getPath();
-		Graph2 g = new Graph2(new FileInputStream(filePath));
+		Graph g = new Graph(new FileInputStream(filePath));
 		System.out.println(g);
 	}
 
