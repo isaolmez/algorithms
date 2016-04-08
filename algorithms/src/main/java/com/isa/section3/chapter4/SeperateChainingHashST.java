@@ -12,8 +12,10 @@ public class SeperateChainingHashST<Key, Value> extends ST<Key, Value> {
 
 	public SeperateChainingHashST(int cap) {
 		hashArray = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[cap];
+		// This our internal representation.
+		// But if value is a list, this must be controlled in client-side
 		for (int i = 0; i < hashArray.length; i++) {
-			hashArray[i] = new SequentialSearchST<Key, Value>();
+			hashArray[i] = new SequentialSearchST<Key, Value>();  
 		}
 	}
 

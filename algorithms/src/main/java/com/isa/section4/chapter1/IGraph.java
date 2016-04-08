@@ -1,14 +1,7 @@
 package com.isa.section4.chapter1;
 
-import java.io.InputStream;
 
-public abstract class Graph {
-	public Graph(int V) {
-	}
-
-	public Graph(InputStream stream) {
-	}
-
+public abstract class IGraph {
 	public abstract int V();
 
 	public abstract int E();

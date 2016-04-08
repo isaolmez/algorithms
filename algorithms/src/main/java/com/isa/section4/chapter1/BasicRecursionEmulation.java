@@ -3,7 +3,7 @@ package com.isa.section4.chapter1;
 import com.isa.section1.chapter3.queue.Queue;
 import com.isa.section1.chapter3.stack.Stack;
 
-public class RecursionEmulation {
+public class BasicRecursionEmulation {
 	public static void recursiveIndependent(int n) {
 		if (n <= 0) {
 			return;
