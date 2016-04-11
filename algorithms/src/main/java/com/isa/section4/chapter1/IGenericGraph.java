@@ -2,7 +2,7 @@ package com.isa.section4.chapter1;
 
 
 
-public abstract class IGenericGraph<Type> {
+public interface IGenericGraph<Type> {
 	
 	public abstract int V();
 

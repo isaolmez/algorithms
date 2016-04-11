@@ -1,7 +1,7 @@
 package com.isa.section4.chapter1;
 
 
-public abstract class IGraph {
+public interface IGraph {
 	public abstract int V();
 
 	public abstract int E();

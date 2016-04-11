@@ -4,7 +4,7 @@ package com.isa.section3.chapter5;
  * Hashing with linear probing
  * 
  */
-public class HashSET<Key> extends ISET<Key> {
+public class HashSET<Key> implements ISET<Key> {
 
 	private Key[] keys;
 	private int size;

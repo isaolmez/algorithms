@@ -12,7 +12,7 @@ import com.isa.section3.chapter4.SeperateChainingHashST;
  * In this ADT API, vertex names can be anything not just integers. To support this, we will use symbol table, seperate chaining hashing symbol table to be specific. Key will be
  * vertex name, and value will be bag of vertices.
  */
-public class GenericGraph<Type> extends IGenericGraph<Type> {
+public class GenericGraph<Type> implements IGenericGraph<Type> {
 	private SeperateChainingHashST<Type, Bag<Type>> backingHashST;
 	private int vertexCount;
 	private int edgeCount;

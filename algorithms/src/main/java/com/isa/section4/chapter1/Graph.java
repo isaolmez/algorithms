@@ -10,7 +10,7 @@ import com.isa.section1.chapter3.bag.Bag;
  * In this API, all vertices are integers. Because of this, our data representation is vertice-indexed array of bags.
  *
  */
-public class Graph extends IGraph {
+public class Graph implements IGraph {
 	private Bag<Integer>[] bagArray;
 	private final int vertexCount;
 	private int edgeCount;

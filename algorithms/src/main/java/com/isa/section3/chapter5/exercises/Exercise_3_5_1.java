@@ -25,7 +25,7 @@ public class Exercise_3_5_1 {
 	}
 }
 
-class HashSET<Key> extends ISET<Key> {
+class HashSET<Key> implements ISET<Key> {
 	private LinearProbingHashST<Key, String> backingST;
 
 	public HashSET(int cap) {
@@ -68,7 +68,7 @@ class HashSET<Key> extends ISET<Key> {
 	}
 }
 
-class SET<Key extends Comparable<Key>> extends ISET<Key> {
+class SET<Key extends Comparable<Key>> implements ISET<Key> {
 	private BST<Key, String> backingTree = new BST<Key, String>();
 
 	@Override

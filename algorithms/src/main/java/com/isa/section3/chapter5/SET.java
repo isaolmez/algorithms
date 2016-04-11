@@ -1,6 +1,6 @@
 package com.isa.section3.chapter5;
 
-public class SET<Key> extends ISET<Key> {
+public class SET<Key> implements ISET<Key> {
 
 	@Override
 	public void add(Key key) {

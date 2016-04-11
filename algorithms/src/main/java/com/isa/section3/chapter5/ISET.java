@@ -1,8 +1,7 @@
 package com.isa.section3.chapter5;
 
-public abstract class ISET<Key> {
+public interface ISET<Key> {
 	
-	public ISET(){}
 	
 	public abstract void add(Key key);
 	
