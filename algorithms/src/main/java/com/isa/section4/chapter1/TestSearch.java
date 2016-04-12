@@ -10,8 +10,8 @@ public class TestSearch {
 		String fileName = "tinyG.txt";
 		String filePath = Thread.currentThread().getContextClassLoader().getResource(fileName).getPath();
 		Graph G = new Graph(new FileInputStream(filePath));
-		int s = Integer.parseInt(args[1]);
-		Search search = new Search(G, s);
+		int s = 7;// Integer.parseInt(args[1]);
+		DepthFirstSearch search = new DepthFirstSearch(G, s);
 		for (int v = 0; v < G.V(); v++) {
 			if (search.marked(v)) {
 				System.out.print(v + " ");
