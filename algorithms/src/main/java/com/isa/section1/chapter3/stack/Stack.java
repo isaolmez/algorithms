@@ -5,17 +5,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 
-import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
-
 public class Stack<Item> implements Iterable<Item> {
-	private BasicLinkedList<Item> backingList;
+	private Node head;
+	private int size;
 
-	public Stack() {
-		backingList = new BasicLinkedList<Item>();
+	private class Node {
+		public Item item;
+		public Node next;
+
+		public Node(Item item) {
+			this.item = item;
+		}
 	}
 
 	public void push(Item item) {
-		backingList.insertToEnd(item);
+		Node added = new Node(item);
+		added.next = head;
+		head = added;
+		size++;
 	}
 
 	public Item pop() {
@@ -23,32 +30,36 @@ public class Stack<Item> implements Iterable<Item> {
 			return null;
 		}
 		
-		return backingList.removeFromEnd();
+		Node result = head;
+		head = head.next;
+		return result.item;
 	}
 
 	public boolean isEmpty() {
-		return backingList.size() == 0;
+		return size() == 0;
 	}
 
 	public int size() {
-		return backingList.size();
+		return size;
 	}
-	
+
 	public Item peek() {
-		return backingList.peekTail();
+		return head != null ? head.item : null;
 	}
 
 	private class StackIterator implements Iterator<Item> {
-		Iterator<Item> iter = backingList.iterator();
+		private Node traverser = head;
 
 		@Override
 		public boolean hasNext() {
-			return iter.hasNext();
+			return traverser != null;
 		}
 
 		@Override
 		public Item next() {
-			return iter.next();
+			Item result = traverser.item;
+			traverser = traverser.next;
+			return result;
 		}
 	}
 

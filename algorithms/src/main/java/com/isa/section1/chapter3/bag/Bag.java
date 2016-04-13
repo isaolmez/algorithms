@@ -5,21 +5,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 
-import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
-
 public class Bag<Item> implements Iterable<Item> {
-	private BasicLinkedList<Item> backingList = new BasicLinkedList<>();
+	private Node head;
+	private int size;
+
+	private class Node {
+		public Item item;
+		public Node next;
+
+		public Node(Item item) {
+			this.item = item;
+		}
+	}
 
 	public void add(Item item) {
-		backingList.insertToEnd(item);
+		Node added = new Node(item);
+		added.next = head;
+		head = added;
+		size++;
 	}
 
 	public boolean isEmpty() {
-		return backingList.size() == 0;
+		return size() == 0;
 	}
 
 	public int size() {
-		return backingList.size();
+		return size;
 	}
 
 	@Override
@@ -28,16 +39,17 @@ public class Bag<Item> implements Iterable<Item> {
 	}
 
 	private class BagIterator implements Iterator<Item> {
-		private Iterator<Item> iterator = backingList.iterator();
-
+		private Node traverser = head;
 		@Override
 		public boolean hasNext() {
-			return iterator.hasNext();
+			return traverser != null;
 		}
 
 		@Override
 		public Item next() {
-			return iterator.next();
+			Item result = traverser.item;
+			traverser = traverser.next;
+			return result;
 		}
 	}
 
@@ -55,7 +67,7 @@ public class Bag<Item> implements Iterable<Item> {
 			for (String s : bag) {
 				System.out.print(s);
 			}
-			
+
 			System.out.println();
 		}
 	}

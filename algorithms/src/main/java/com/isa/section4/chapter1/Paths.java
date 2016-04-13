@@ -42,24 +42,7 @@ public class Paths implements IPaths {
 			v = edges[v];
 		}
 		
-		return new Iterable<Integer>() {
-			
-			@Override
-			public Iterator<Integer> iterator() {
-				return new Iterator<Integer>() {
-
-					@Override
-					public boolean hasNext() {
-						return !stack.isEmpty();
-					}
-
-					@Override
-					public Integer next() {
-						return stack.pop();
-					}
-				};
-			}
-		};
+		return stack;
 	}
 
 	private void search(int vertex) {

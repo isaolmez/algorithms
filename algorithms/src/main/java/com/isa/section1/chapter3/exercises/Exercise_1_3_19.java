@@ -14,28 +14,27 @@ public class Exercise_1_3_19 {
 		for (String s : list) {
 			System.out.print(s);
 		}
-		
+
 		System.out.println();
 		list.deleteAtIndex(2);
+		list.deleteLast();
 		for (String s : list) {
 			System.out.print(s);
 		}
-		
+
 		System.out.println();
 		list.remove("f");
 		for (String s : list) {
 			System.out.print(s);
 		}
-		
+
 	}
 }
 
 /**
  * Used For:
  * 
- * Exercise_1_3_19 
- * Exercise_1_3_20
- * Exercise_1_3_26
+ * Exercise_1_3_19 Exercise_1_3_20 Exercise_1_3_26
  * 
  * */
 class ExerciseLinkedList<Item> implements Iterable<Item> {
@@ -55,20 +54,16 @@ class ExerciseLinkedList<Item> implements Iterable<Item> {
 	 */
 	public void deleteLast() {
 		if (head == null) {
-			return;
-		}
-
-		Node traverser = head;
-		while (true) {
-			if (traverser.next == null) {
-				head = null;//head = head.next;
-				break;
-			} else if (traverser.next.next == null) {
-				traverser.next = null;
-				break;
+			// Do nothing
+		} else if (head.next == null) {
+			head = null;
+		} else {
+			Node traverser = head;
+			while (traverser.next.next != null) {
+				traverser = traverser.next;
 			}
-
-			traverser = traverser.next;
+			
+			traverser.next = null;
 		}
 	}
 
@@ -122,14 +117,14 @@ class ExerciseLinkedList<Item> implements Iterable<Item> {
 				// Structural changes
 				if (nextToTraverser != null) {
 					nextToTraverser.next = traverser.next;
-				}else{
+				} else {
 					head = head.next;
 				}
-				
+
 				// A little trick
 				traverser = nextToTraverser;
 			}
-			
+
 			// Update 2 references
 			if (traverser.next != null) {
 				nextToTraverser = traverser;
@@ -138,26 +133,26 @@ class ExerciseLinkedList<Item> implements Iterable<Item> {
 				break;
 			}
 		}
-		
+
 		// Traverser is allowed to be null
-//		while (true) {
-//			if(traverser == null){
-//				break;
-//			}
-//			
-//			if (traverser.item.equals(key)) {
-//				if (nextToTraverser != null) {
-//					nextToTraverser.next = traverser.next;
-//					traverser = traverser.next;
-//				}else{
-//					head = head.next;
-//					traverser = traverser.next;
-//				}
-//			} else {
-//				nextToTraverser = traverser;
-//				traverser = traverser.next;
-//			} 
-//		}
+		// while (true) {
+		// if(traverser == null){
+		// break;
+		// }
+		//
+		// if (traverser.item.equals(key)) {
+		// if (nextToTraverser != null) {
+		// nextToTraverser.next = traverser.next;
+		// traverser = traverser.next;
+		// }else{
+		// head = head.next;
+		// traverser = traverser.next;
+		// }
+		// } else {
+		// nextToTraverser = traverser;
+		// traverser = traverser.next;
+		// }
+		// }
 
 	}
 

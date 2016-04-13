@@ -5,33 +5,54 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 
-import com.isa.section1.chapter3.linkedlist.BasicLinkedList;
-
 public class Queue<Item> implements Iterable<Item> {
-	private BasicLinkedList<Item> backingList;
+	private Node head;
+	private Node tail;
+	private int size;
 
-	public Queue() {
-		backingList = new BasicLinkedList<Item>();
+	private class Node {
+		public Item item;
+		public Node next;
+
+		public Node(Item item) {
+			this.item = item;
+		}
 	}
 
 	public void enqueue(Item item) {
-		backingList.insertToEnd(item);
+		if (isEmpty()) {
+			head = new Node(item);
+			tail = head;
+			size++;
+			return;
+		}
+
+		Node added = new Node(item);
+		tail.next = added;
+		tail = added;
+		size++;
 	}
 
 	public Item dequeue() {
 		if (isEmpty()) {
 			return null;
+		} else if (head == tail) {
+			Node result = head;
+			tail = head = head.next;
+			return result.item;
+		} else {
+			Node result = head;
+			head = head.next;
+			return result.item;
 		}
-
-		return backingList.removeFromStart();
 	}
 
 	public int size() {
-		return backingList.size();
+		return size;
 	}
 
 	public boolean isEmpty() {
-		return backingList.size() == 0;
+		return size() == 0;
 	}
 
 	@Override
@@ -40,16 +61,18 @@ public class Queue<Item> implements Iterable<Item> {
 	}
 
 	private class QueueIterator implements Iterator<Item> {
-		private Iterator<Item> iterator = backingList.iterator();
-		
+		private Node traverser = head;
+
 		@Override
 		public boolean hasNext() {
-			return iterator.hasNext();
+			return traverser != null;
 		}
 
 		@Override
 		public Item next() {
-			return iterator.next();
+			Item result = traverser.item;
+			traverser = traverser.next;
+			return result;
 		}
 	}
 
@@ -71,7 +94,7 @@ public class Queue<Item> implements Iterable<Item> {
 			for (String s : queue) {
 				System.out.print(s);
 			}
-			
+
 			System.out.println();
 		}
 	}
