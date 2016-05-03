@@ -32,6 +32,7 @@ public class Stack<Item> implements Iterable<Item> {
 		
 		Node result = head;
 		head = head.next;
+		size--;
 		return result.item;
 	}
 

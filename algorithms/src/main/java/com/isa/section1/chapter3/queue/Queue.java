@@ -39,10 +39,12 @@ public class Queue<Item> implements Iterable<Item> {
 		} else if (head == tail) {
 			Node result = head;
 			tail = head = head.next;
+			size--;
 			return result.item;
 		} else {
 			Node result = head;
 			head = head.next;
+			size--;
 			return result.item;
 		}
 	}
