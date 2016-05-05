@@ -7,6 +7,7 @@ public class TwoSum extends DoublingTestTemplate {
 		twoSum.ratio(10);
 	}
 
+	/** Growth rate: N^2 */
 	public int count(int[] arr) {
 		int count = 0;
 		for (int i = 0; i < arr.length; i++) {

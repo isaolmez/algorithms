@@ -6,6 +6,7 @@ import com.sedgewick.stdlib.Stopwatch;
 
 public class ThreeSum {
 
+	/** Growth rate is N^3 */
 	public static int count(int[] numbers) {
 		int count = 0;
 		// Combination of 3s
@@ -13,7 +14,7 @@ public class ThreeSum {
 			for (int k = i + 1; k < numbers.length; k++) {
 				for (int m = k + 1; m < numbers.length; m++) {
 					if (numbers[i] + numbers[k] + numbers[m] == 0) {
-						System.out.println("Numbers: " + numbers[i] + " " + numbers[k] + " " + numbers[m]);
+						// System.out.println("Numbers: " + numbers[i] + " " + numbers[k] + " " + numbers[m]);
 						count++;
 					}
 				}
@@ -27,25 +28,29 @@ public class ThreeSum {
 		int[] numbers = { 1, 0, -1, 2, -2 };
 		System.out.println(count(numbers));
 
-		System.exit(1);
+//		System.exit(1);
+		System.out.println("1Kints.txt");
 		String fileName = Thread.currentThread().getContextClassLoader().getResource("1Kints.txt").toString();
 		int[] a = In.readInts(fileName);
 		Stopwatch st = new Stopwatch();
 		StdOut.println(count(a));
 		System.out.println("Elapsed Time: " + st.elapsedTime());
 
+		System.out.println("2Kints.txt");
 		fileName = Thread.currentThread().getContextClassLoader().getResource("2Kints.txt").toString();
 		a = In.readInts(fileName);
 		st = new Stopwatch();
 		StdOut.println(count(a));
 		System.out.println("Elapsed Time: " + st.elapsedTime());
 
+		System.out.println("4Kints.txt");
 		fileName = Thread.currentThread().getContextClassLoader().getResource("4Kints.txt").toString();
 		a = In.readInts(fileName);
 		st = new Stopwatch();
 		StdOut.println(count(a));
 		System.out.println("Elapsed Time: " + st.elapsedTime());
 
+		System.out.println("8Kints.txt");
 		fileName = Thread.currentThread().getContextClassLoader().getResource("8Kints.txt").toString();
 		a = In.readInts(fileName);
 		st = new Stopwatch();

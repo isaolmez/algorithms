@@ -9,6 +9,7 @@ public class TwoSumFast extends DoublingTestTemplate {
 		twoSumFast.ratio(100);
 	}
 
+	/** Growth rate: NlogN */
 	public int count(int[] arr) {
 		int count = 0;
 		// Sort -> NlogN

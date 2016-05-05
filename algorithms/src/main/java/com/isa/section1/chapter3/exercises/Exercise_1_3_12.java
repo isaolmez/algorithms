@@ -10,17 +10,17 @@ public class Exercise_1_3_12 {
 		stack.push("d");
 		stack.push("f");
 		Stack<String> copiedStack = copy(stack);
-		for(String s: copiedStack){
+		for (String s : copiedStack) {
 			System.out.print(s + " ");
 		}
 	}
-	
-	public static Stack<String> copy(Stack<String> stack){
+
+	public static Stack<String> copy(Stack<String> stack) {
 		Stack<String> copiedStack = new Stack<>();
-		for(String s: stack){
+		for (String s : stack) {
 			copiedStack.push(s);
 		}
-		
+
 		return copiedStack;
 	}
 

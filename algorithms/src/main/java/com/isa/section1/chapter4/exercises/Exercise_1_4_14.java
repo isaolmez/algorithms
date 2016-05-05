@@ -11,6 +11,7 @@ public class Exercise_1_4_14 {
 	}
 }
 
+/** Growth rate: N^4 */
 class FourSum extends DoublingTestTemplate {
 	public int countBasic(int[] arr) {
 		int count = 0;
