@@ -56,15 +56,15 @@ public class Paths implements IPaths {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String fileName = "tinyG.txt";
+		String fileName = "tinyCG.txt";
 		String filePath = Thread.currentThread().getContextClassLoader().getResource(fileName).getPath();
 		Graph G = new Graph(new FileInputStream(filePath));
 		int s = 0;
-		Paths search = new Paths(G, s);
+		Paths paths = new Paths(G, s);
 		for (int v = 0; v < G.V(); v++) {
 			System.out.print(s + " to " + v + ": ");
-			if (search.hasPathTo(v))
-				for (int x : search.pathTo(v))
+			if (paths.hasPathTo(v))
+				for (int x : paths.pathTo(v))
 					if (x == s)
 						System.out.print(x);
 					else

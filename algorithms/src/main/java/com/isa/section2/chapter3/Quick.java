@@ -112,9 +112,9 @@ public class Quick {
 	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
 		// String[] a = In.readStrings();
 //		String[] a = { "A", "E", "I", "C", "K", "S", "O", "R", "T", "E", "X", "U", "M", "P", "L", "Q" };
-		Double[] a = new Double[10000000];
-		for (int i = 0; i < 10000000; i++) {
-			a[i] = (double) StdRandom.uniform(1000000);
+		Double[] a = new Double[100000];
+		for (int i = 0; i < 100000; i++) {
+			a[i] = (double) StdRandom.uniform(10000);
 		}
 
 		Stopwatch st = new Stopwatch();
@@ -122,5 +122,12 @@ public class Quick {
 		assert isSorted(a);
 //		show(a);
 		System.out.println(st.elapsedTime());
+		
+		Integer[] arr2 = {4,2,3,4};
+		sort(arr2);
+		for(int i : arr2){
+			System.out.print(i + " ");
+		}
+		assert isSorted(arr2);
 	}
 }
