@@ -43,6 +43,29 @@ public class Digraph implements IDigraph {
 		scanner.close();
 	}
 
+	public Digraph(InputStream stream, String delimiter) {
+		Scanner scanner = new Scanner(stream);
+		scanner.useDelimiter(delimiter);
+		/** Read vertice and edge count */
+		this.verticeCount = scanner.nextInt();
+		scanner.nextInt(); // read edge count
+
+		/** Initialize the adjacency list and individual bags */
+		this.adjList = (Bag<Integer>[]) new Bag[verticeCount];
+		for (int i = 0; i < verticeCount; i++) {
+			adjList[i] = new Bag<Integer>();
+		}
+
+		/** Read edges from input stream and add to the directed graph */
+		while (scanner.hasNext()) {
+			int firstVertex = scanner.nextInt();
+			int secondVertex = scanner.nextInt();
+			this.addEdge(firstVertex, secondVertex);
+		}
+
+		scanner.close();
+	}
+	
 	@Override
 	public int V() {
 		return this.verticeCount;
