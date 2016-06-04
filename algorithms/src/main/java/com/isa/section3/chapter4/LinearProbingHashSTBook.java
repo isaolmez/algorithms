@@ -108,6 +108,7 @@ public class LinearProbingHashSTBook<Key, Value> {
                 temp.put(keys[i], vals[i]);
             }
         }
+        
         keys = temp.keys;
         vals = temp.vals;
         M    = temp.M;
