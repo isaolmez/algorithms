@@ -2,7 +2,7 @@ package com.isa.section2.chapter4;
 
 import java.util.Arrays;
 
-public class MinPQ<Key extends Comparable<Key>> {
+public class MinPQ<Key extends Comparable<? super Key>> {
 	// Both the counter and insert pointer
 	private int size = 0;
 	private Key[] keys;
@@ -28,7 +28,7 @@ public class MinPQ<Key extends Comparable<Key>> {
 		swim(size);
 	}
 
-	public Key max() {
+	public Key min() {
 		if (isEmpty()) {
 			return null;
 		}
@@ -36,7 +36,7 @@ public class MinPQ<Key extends Comparable<Key>> {
 		return keys[1];
 	}
 
-	public Key delMax() {
+	public Key delMin() {
 		if (isEmpty()) {
 			return null;
 		}
@@ -153,14 +153,14 @@ public class MinPQ<Key extends Comparable<Key>> {
 	public static void main(String[] args) {
 		// MaxPQ<String> maxPQ = new MaxPQ<String>(new String[] { "i", "n", "g", "h", "e", "a", "p", "s", "o", "r", "t" });
 		// MaxPQ<String> maxPQ = new MaxPQ<String>(new String[] { "i", "s", "a", "o", "l", "m", "e", "z" });
-		MinPQ<String> maxPQ = new MinPQ<String>(2);
+		MinPQ<String> minPQ = new MinPQ<String>(2);
 		String[] source = new String[] { "i", "n", "g", "h", "e", "a", "p", "s", "o", "r", "t" };
 		for (String s : source) {
-			maxPQ.insert(s);
+			minPQ.insert(s);
 		}
 
-		while (maxPQ.size() > 0) {
-			System.out.println(maxPQ.delMax());
+		while (minPQ.size() > 0) {
+			System.out.println(minPQ.delMin());
 		}
 	}
 }
