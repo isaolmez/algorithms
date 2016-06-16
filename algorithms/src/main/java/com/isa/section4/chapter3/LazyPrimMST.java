@@ -3,6 +3,7 @@ package com.isa.section4.chapter3;
 import java.util.LinkedList;
 
 import com.isa.section2.chapter4.MinPQ;
+import com.sedgewick.stdlib.Stopwatch;
 
 public class LazyPrimMST implements IMST {
 	private boolean[] marked;
@@ -54,12 +55,14 @@ public class LazyPrimMST implements IMST {
 	}
 
 	public static void main(String[] args) {
-		String fileName = "mediumEWG.txt";
+		String fileName = "largeEWG.txt";
 		String fullPath = Thread.currentThread().getContextClassLoader().getResource(fileName).getPath();
 		EdgeWeightedGraph G = new EdgeWeightedGraph(fullPath, " ");
+		Stopwatch watch = new Stopwatch();
 		LazyPrimMST mst = new LazyPrimMST(G);
-		for (Edge e : mst.edges())
-			System.out.println(e);
+		System.out.println("Elapsed time: " + watch.elapsedTime());
+		// for (Edge e : mst.edges())
+		// System.out.println(e);
 		System.out.println(mst.weight());
 	}
 }
