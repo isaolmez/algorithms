@@ -44,6 +44,4 @@ public class Exercise_1_3_5 {
 	}
 	
 	// We have also implemented a recursive method.
-	
-	
 }

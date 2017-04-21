@@ -3,193 +3,171 @@ package com.isa.section1.chapter3.exercises;
 import java.util.Iterator;
 
 public class Exercise_1_3_19 {
-	public static void main(String[] args) {
-		ExerciseLinkedList<String> list = new ExerciseLinkedList<>();
-		list.insertToEnd("a");
-		list.insertToEnd("s");
-		list.insertToEnd("d");
-		list.insertToEnd("f");
-		list.insertToEnd("f");
-		list.insertToEnd("f");
-		for (String s : list) {
-			System.out.print(s);
-		}
+    public static void main(String[] args) {
+        ExerciseLinkedList<String> list = new ExerciseLinkedList<>();
+        list.insertToEnd("a");
+        list.insertToEnd("s");
+        list.insertToEnd("d");
+        list.insertToEnd("f");
+        list.insertToEnd("f");
+        list.insertToEnd("f");
+        for (String s : list) {
+            System.out.print(s);
+        }
 
-		System.out.println();
-		list.deleteAtIndex(2);
-		list.deleteLast();
-		for (String s : list) {
-			System.out.print(s);
-		}
+        System.out.println();
+        list.deleteAtIndex(2);
+        list.deleteLast();
+        for (String s : list) {
+            System.out.print(s);
+        }
 
-		System.out.println();
-		list.remove("f");
-		for (String s : list) {
-			System.out.print(s);
-		}
+        System.out.println();
+        list.remove("f");
+        for (String s : list) {
+            System.out.print(s);
+        }
 
-	}
-}
+    }
 
-/**
- * Used For:
- * 
- * Exercise_1_3_19 Exercise_1_3_20 Exercise_1_3_26
- * 
- * */
-class ExerciseLinkedList<Item> implements Iterable<Item> {
-	private Node head;
+    /**
+     * Used For:
+     * <p>
+     * Exercise_1_3_19 Exercise_1_3_20 Exercise_1_3_30
+     */
+    private static class ExerciseLinkedList<Item> implements Iterable<Item> {
+        private Node head;
 
-	private class Node {
-		Item item;
-		Node next;
+        private class Node {
+            Item item;
+            Node next;
 
-		public Node(Item item) {
-			this.item = item;
-		}
-	}
+            public Node(Item item) {
+                this.item = item;
+            }
+        }
 
-	/**
-	 * Exercise_1_3_19
-	 */
-	public void deleteLast() {
-		if (head == null) {
-			// Do nothing
-		} else if (head.next == null) {
-			head = null;
-		} else {
-			Node traverser = head;
-			while (traverser.next.next != null) {
-				traverser = traverser.next;
-			}
-			
-			traverser.next = null;
-		}
-	}
+        /**
+         * Exercise_1_3_19
+         */
+        public void deleteLast() {
+            if (head == null) {
+                // Do nothing
+            } else if (head.next == null) {
+                head = null;
+            } else {
+                Node traverser = head;
+                while (traverser.next.next != null) {
+                    traverser = traverser.next;
+                }
 
-	/**
-	 * Exercise_1_3_20 Delete node with index k or (k+1)th node.
-	 */
-	public void deleteAtIndex(int k) {
-		if (head == null) {
-			return;
-		}
+                traverser.next = null;
+            }
+        }
 
-		if (k == 0) {
-			head = head.next;
-			return;
-		}
+        /**
+         * Exercise_1_3_20 Delete node with index k or (k+1)th node.
+         */
+        public void deleteAtIndex(int k) {
+            if (head == null) {
+                return;
+            }
 
-		// Find the node with index (k-1)
-		Node traverser = null;
-		for (int i = 0; i <= k - 1; i++) {
-			if (i == 0) {
-				traverser = head;
-			} else {
-				traverser = traverser.next;
-			}
+            if (k == 0) {
+                head = head.next;
+                return;
+            }
 
-			if (traverser == null) {
-				return;
-			}
-		}
+            // Find the node with index (k-1)
+            Node traverser = null;
+            for (int i = 0; i <= k - 1; i++) {
+                if (i == 0) {
+                    traverser = head;
+                } else {
+                    traverser = traverser.next;
+                }
 
-		if (traverser != null && traverser.next != null) {
-			traverser.next = traverser.next.next;
-		}
+                if (traverser == null) {
+                    return;
+                }
+            }
 
-	}
+            if (traverser != null && traverser.next != null) {
+                traverser.next = traverser.next.next;
+            }
 
-	/**
-	 * Exercise_1_3_26 Delete node with index k or (k+1)th node.
-	 */
-	public void remove(Item key) {
-		if (head == null) {
-			return;
-		}
+        }
 
-		Node traverser = head;
-		Node nextToTraverser = null;
+        /**
+         * Exercise_1_3_30 Delete node with index k or (k+1)th node.
+         */
+        public void remove(Item key) {
+            if (head == null) {
+                return;
+            }
 
-		// Traverser is not allowed to be null
-		while (true) {
-			if (traverser.item.equals(key)) {
-				// Structural changes
-				if (nextToTraverser != null) {
-					nextToTraverser.next = traverser.next;
-				} else {
-					head = head.next;
-				}
+            Node traverser = head;
+            Node nextToTraverser = null;
 
-				// A little trick
-				traverser = nextToTraverser;
-			}
+            // Traverser is not allowed to be null
+            while (true) {
+                if (traverser.item.equals(key)) {
+                    // Structural changes
+                    if (nextToTraverser != null) {
+                        nextToTraverser.next = traverser.next;
+                    } else {
+                        head = head.next;
+                    }
 
-			// Update 2 references
-			if (traverser.next != null) {
-				nextToTraverser = traverser;
-				traverser = traverser.next;
-			} else {
-				break;
-			}
-		}
+                    // A little trick
+                    traverser = nextToTraverser;
+                }
 
-		// Traverser is allowed to be null
-		// while (true) {
-		// if(traverser == null){
-		// break;
-		// }
-		//
-		// if (traverser.item.equals(key)) {
-		// if (nextToTraverser != null) {
-		// nextToTraverser.next = traverser.next;
-		// traverser = traverser.next;
-		// }else{
-		// head = head.next;
-		// traverser = traverser.next;
-		// }
-		// } else {
-		// nextToTraverser = traverser;
-		// traverser = traverser.next;
-		// }
-		// }
+                // Update 2 references
+                if (traverser.next != null) {
+                    nextToTraverser = traverser;
+                    traverser = traverser.next;
+                } else {
+                    break;
+                }
+            }
+        }
 
-	}
+        public void insertToEnd(Item item) {
+            if (head == null) {
+                head = new Node(item);
+                return;
+            }
 
-	public void insertToEnd(Item item) {
-		if (head == null) {
-			head = new Node(item);
-			return;
-		}
+            Node traverser = head;
+            while (traverser.next != null) {
+                traverser = traverser.next;
+            }
 
-		Node traverser = head;
-		while (traverser.next != null) {
-			traverser = traverser.next;
-		}
+            traverser.next = new Node(item);
+        }
 
-		traverser.next = new Node(item);
-	}
+        @Override
+        public Iterator<Item> iterator() {
+            return new LinkedListIterator();
+        }
 
-	@Override
-	public Iterator<Item> iterator() {
-		return new LinkedListIterator();
-	}
+        private class LinkedListIterator implements Iterator<Item> {
 
-	private class LinkedListIterator implements Iterator<Item> {
+            private Node activeNode = head;
 
-		private Node activeNode = head;
+            @Override
+            public boolean hasNext() {
+                return activeNode != null;
+            }
 
-		@Override
-		public boolean hasNext() {
-			return activeNode != null;
-		}
+            @Override
+            public Item next() {
+                Item result = activeNode.item;
+                activeNode = activeNode.next;
+                return result;
+            }
 
-		@Override
-		public Item next() {
-			Item result = activeNode.item;
-			activeNode = activeNode.next;
-			return result;
-		}
-
-	}
+        }
+    }
 }
