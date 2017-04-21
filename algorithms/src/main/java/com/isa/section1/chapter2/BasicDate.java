@@ -2,9 +2,9 @@ package com.isa.section1.chapter2;
 
 public class BasicDate {
 
-	private int year;
-	private int month;
-	private int day;
+	private final int year;
+	private final int month;
+	private final int day;
 
 	public BasicDate(int year, int month, int day) {
 		this.year = year;
