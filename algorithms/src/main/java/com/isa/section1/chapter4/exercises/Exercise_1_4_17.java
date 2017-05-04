@@ -33,7 +33,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
             preProcess(values);
 
             double localMaxSum = 0;
@@ -58,7 +57,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
             preProcess(values);
 
             double globalMaxSum = 0;
@@ -89,7 +87,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
 
             double globalMaxDifference = 0;
             double localDifference;
@@ -114,7 +111,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
 
             double globalMaxDifference = 0;
             double localDifference;
@@ -143,7 +139,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
             preProcess(values);
 
             double globalMaxSum = 0;
@@ -173,7 +168,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
             preProcess(values);
 
             double globalMaxSum = 0;
@@ -210,7 +204,6 @@ public class Exercise_1_4_17 {
             }
 
             double[] values = Arrays.copyOf(inputValues, inputValues.length);
-            System.out.println(Arrays.toString(values));
 
             double max = 0;
             double min = 0;
@@ -219,12 +212,12 @@ public class Exercise_1_4_17 {
             double runningDifference;
             for (int i = 1; i < values.length; i++) {
                 runningDifference = values[i] - values[0];
-                if(runningDifference > max){
+                if (runningDifference > max) {
                     max = runningDifference;
                     maxIndex = i;
                 }
 
-                if(runningDifference < min){
+                if (runningDifference < min) {
                     min = runningDifference;
                     minIndex = i;
                 }

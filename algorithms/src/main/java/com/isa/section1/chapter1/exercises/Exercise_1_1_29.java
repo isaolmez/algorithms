@@ -38,7 +38,7 @@ public class Exercise_1_1_29 {
         System.out.printf("Count of %s : %s%n", 3, binarySearch.count(11));
     }
 
-    private static class BinarySearchInLinear {
+    public static class BinarySearchInLinear {
         private final int[] source;
 
         public BinarySearchInLinear(int[] input) {
@@ -106,7 +106,7 @@ public class Exercise_1_1_29 {
         }
     }
 
-    private static class BinarySearch {
+    public static class BinarySearch {
         private final int[] source;
 
         public BinarySearch(int[] input) {
