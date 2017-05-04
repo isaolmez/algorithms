@@ -13,7 +13,7 @@ public class Insertion {
 
 	public static void sort(Comparable[] a, int low, int high) {
 		for (int i = low; i <= high; i++) {
-			for (int k = i; k > i && less(a[k], a[k - 1]); k--) {
+			for (int k = i; k > low && less(a[k], a[k - 1]); k--) {
 				exch(a, k - 1, k);
 			}
 		}

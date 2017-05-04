@@ -1,5 +1,6 @@
 package com.isa.section2.chapter1;
 
+import com.isa.section2.chapter1.exercises.Exercise_2_1_24;
 import com.sedgewick.stdlib.StdOut;
 import com.sedgewick.stdlib.StdRandom;
 import com.sedgewick.stdlib.Stopwatch;
@@ -13,8 +14,8 @@ public class SortCompare {
 			Selection.sort(a);
 		if (alg.equals("Shell"))
 			Shell.sort(a);
-		// if (alg.equals("Merge"))
-		// Merge.sort(a);
+		 if (alg.equals("InsertionSentinel"))
+			 Exercise_2_1_24.InsertionSortWithSentinel.sort(a);
 		// if (alg.equals("Quick"))
 		// Quick.sort(a);
 		// if (alg.equals("Heap"))

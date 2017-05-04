@@ -1,9 +1,11 @@
 package com.isa.section2.chapter1.exercises;
 
-import com.isa.section2.chapter1.Shell;
 import com.sedgewick.stdlib.StdRandom;
 
-public class Exercise_2_1_13 {
+import java.util.Arrays;
+import java.util.LinkedList;
+
+public class Exercise_2_1_14 {
     public static void main(String[] args) {
         Card[] deck = new Card[52];
         String[] suits = {"spades", "hearts", "clubs", "diamonds"};
@@ -15,8 +17,41 @@ public class Exercise_2_1_13 {
         }
 
         StdRandom.shuffle(deck);
-        Shell.sort(deck);
-        Shell.show(deck);
+        LinkedList<Card> deckList = new LinkedList<>();
+        Arrays.stream(deck).forEachOrdered(card -> deckList.addLast(card));
+        DequeueSort.sort(deckList);
+        for (Card card : deckList) {
+            System.out.printf("%s ", card);
+        }
+    }
+
+    public static class DequeueSort {
+        public static void sort(LinkedList<Card> deck) {
+            int round = 0;
+            int totalRounds = deck.size() - 1;
+            while (round <= totalRounds) {
+                for (int i = 0; i < deck.size() - 1 - round; i++) {
+                    Card top = deck.removeFirst();
+                    Card below = deck.removeFirst();
+                    if (less(top, below)) {
+                        deck.addLast(below);
+                        deck.addFirst(top);
+                    } else {
+                        deck.addLast(top);
+                        deck.addFirst(below);
+                    }
+                }
+                for (int i = 0; i <= round; i++) {
+                    deck.addLast(deck.removeFirst());
+                }
+
+                round++;
+            }
+        }
+
+        public static boolean less(Comparable first, Comparable second) {
+            return first.compareTo(second) < 0;
+        }
     }
 
     public static class Card implements Comparable<Card> {
@@ -49,13 +84,13 @@ public class Exercise_2_1_13 {
 
         private String internalSuit() {
             if (suit.equals("spades")) {
-                return "0";
+                return "4";
             } else if (suit.equals("hearts")) {
-                return "1";
-            } else if (suit.equals("clubs")) {
-                return "2";
-            } else if (suit.equals("diamonds")) {
                 return "3";
+            } else if (suit.equals("clubs")) {
+                return "1";
+            } else if (suit.equals("diamonds")) {
+                return "2";
             } else {
                 return null;
             }
