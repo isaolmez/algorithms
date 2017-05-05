@@ -51,11 +51,11 @@ public class Exercise_2_1_26 {
             }
         }
 
-        public static boolean less(int first, int second) {
+        private static boolean less(int first, int second) {
             return first < second;
         }
 
-        public static void exch(int[] values, int first, int second) {
+        private static void exch(int[] values, int first, int second) {
             int temp = values[first];
             values[first] = values[second];
             values[second] = temp;
