@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 public class Exercise_1_4_22 {
     public static void main(String[] args) {
+
+        System.out.println(Arrays.toString(findFibonacciParts(13)));
         int[] values = new int[100];
         for (int i = 0; i < 100; i++) {
             values[i] = i;
@@ -22,7 +24,7 @@ public class Exercise_1_4_22 {
         public static int rank(int[] source, int key) {
             int low = 0;
             int high = source.length - 1;
-            int[] ks = findNthFibonacci(high - low);
+            int[] ks = findFibonacciParts(high - low);
             int kminus1 = ks[1];
             int kminus2 = ks[0];
             while (low <= high) {
@@ -34,7 +36,7 @@ public class Exercise_1_4_22 {
                     kminus2 = kminus2 - kminus1;
                 } else {
                     low = low + kminus2;
-                    ks = findNthFibonacci(high - low);
+                    ks = findFibonacciParts(high - low);
                     kminus1 = ks[1];
                     kminus2 = ks[0];
                 }
@@ -44,22 +46,20 @@ public class Exercise_1_4_22 {
         }
     }
 
-    private static int[] findNthFibonacci(int number) {
+    private static int[] findFibonacciParts(int number) {
         if (number == 1) {
             return new int[]{1, 1};
         }
 
-        int f0 = 1;
-        int f1 = 1;
-        int f2;
+        int g = 1;
+        int f = 0;
         while (true) {
-            f2 = f0 + f1;
-            if (f2 >= number) {
-                return new int[]{f0, f1};
-            } else {
-                f0 = f1;
-                f1 = f2;
+            if (g + f >= number) {
+                return new int[]{g, f};
             }
+            int temp = f;
+            f = f + g;
+            g = temp;
         }
     }
 }

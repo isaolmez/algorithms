@@ -22,7 +22,7 @@ public class Exercise_1_2_16 {
         private final long denominator;
 
         public Rational(long numerator, long denominator) {
-            if(denominator == 0){
+            if (denominator == 0) {
                 throw new IllegalArgumentException("Denominator cannot be 0");
             }
 
@@ -102,10 +102,6 @@ public class Exercise_1_2_16 {
         }
 
         private long gcd(long x, long y) {
-            if (y > x) {
-                return gcd(y, x);
-            }
-
             if (y == 0) {
                 return x;
             } else {

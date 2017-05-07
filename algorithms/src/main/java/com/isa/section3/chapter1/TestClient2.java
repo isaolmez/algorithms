@@ -12,13 +12,13 @@ public class TestClient2 {
 		ST<Integer, Integer> binarySearchST = new BinarySearchST<Integer, Integer>();
 		SequentialSearchST<Integer, Integer> sequentialSearchST = new SequentialSearchST<Integer, Integer>();
 		Stopwatch watch = new Stopwatch();
-		for (int i = 200000; i > 0; i--) {
+		for (int i = 20000; i > 0; i--) {
 			sequentialSearchST.put(i, i);
 		}
 		System.out.println("SequentialSearch: " + watch.elapsedTime());
 
 		watch = new Stopwatch();
-		for (int i = 200000; i > 0; i--) {
+		for (int i = 20000; i > 0; i--) {
 			binarySearchST.put(i, i);
 		}
 		System.out.println("BinarySearch: " + watch.elapsedTime());
